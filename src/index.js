@@ -4,6 +4,7 @@ import { OrbitControls } from './OrbitControls';
 import bSpline from './bspline';
 import { Text } from 'troika-three-text'
 import { parseDxfMTextContent } from '@dxfom/mtext';
+import { TextGeometry } from 'three/examples/jsm/geometries/TextGeometry'
 
 const textControlCharactersRegex = /\\[AXQWOoLIpfH].*;/g;
 const curlyBraces = /\\[{}]/g;
@@ -566,7 +567,7 @@ export function Viewer(data, parent, width, height, font) {
         if (!font)
             return console.warn('Text is not supported without a Three.js font loaded with THREE.FontLoader! Load a font of your choice and pass this into the constructor. See the sample for this repository or Three.js examples at http://threejs.org/examples/?q=text#webgl_geometry_text for more details.');
 
-        geometry = new THREE.TextGeometry(entity.text, { font: font, height: 0, size: entity.textHeight || 12 });
+        geometry = new TextGeometry(entity.text, { font: font, height: 0, size: entity.textHeight || 12 });
 
         if (entity.rotation) {
             var zRotation = entity.rotation * Math.PI / 180;
